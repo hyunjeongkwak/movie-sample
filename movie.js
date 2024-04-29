@@ -17,7 +17,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     movieInfo = response.results;
 
     movies.forEach((movie) => {
-      console.log('movie', movie);
+      // console.log('movie', movie);
 
       let cardBox = (innerHTML += `<div id=${movie.id} class="card">
       <img src=https://image.tmdb.org/t/p/w500${movie.poster_path} alt='movie img'/>
@@ -46,7 +46,8 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 let a = (movies) => {
   let addHTML = '';
   if (movies.length === 0) {
-    movies = movieInfo;
+    // movies = movieInfo;
+    movieInfo = movies;
   }
 };
 
@@ -56,17 +57,16 @@ function clear() {
 }
 
 // 영화 검색
+const searchMovieBtn = document.getElementById('search-button');
 
-function search() {
-  let searchMovie = document.getElementById('search-movie').value.toLowerCase();
+searchMovieBtn.addEventListener('click', function (event) {
+  let searchMovie = document.getElementById('search-movie');
+  const searchValue = searchMovie.value.trim();
+  console.log(searchValue);
   let filteredMovie = movieInfo.filter((movie) => {
-    return movie.title.toLowerCase().includes(searchMovie);
+    return movie.title.includes(searchValue);
   });
-  a(filteredMovie);
-}
+  console.log(filteredMovie);
 
-// const form = document.querySelector('#search-movie');
-// form.addEventListener('input', (event) => {
-//   event.preventDefault();
-//   handleSearch(searchMovie.value);
-// });
+  a(filteredMovie);
+});
