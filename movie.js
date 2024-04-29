@@ -44,7 +44,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
   .catch((err) => console.error(err));
 
 let a = (movies) => {
-  let addHTML = '';
   if (movies.length === 0) {
     // movies = movieInfo;
     movieInfo = movies;
@@ -69,4 +68,16 @@ searchMovieBtn.addEventListener('click', function (event) {
   console.log(filteredMovie);
 
   a(filteredMovie);
+
+  // 기존의 카드들 숨기기
+  let cards = document.querySelectorAll('.card');
+  cards.forEach((card) => {
+    card.style.display = 'none';
+  });
+
+  // 필터링된 카드들만 보이기
+  filteredMovie.forEach((movie) => {
+    let card = document.getElementById(movie.id);
+    card.style.display = 'block';
+  });
 });
