@@ -14,6 +14,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
   .then((response) => {
     const movies = response.results;
     let innerHTML = '';
+    movieInfo = response.results;
 
     movies.forEach((movie) => {
       console.log('movie', movie);
@@ -38,16 +39,16 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         alert(`영화 id: ${event.currentTarget.id}`);
       });
     });
-
-    let a = (movies) => {
-      let addHTML = '';
-      if (movies.length === 0) {
-        movies = movieInfo;
-        console.log(filteredMovie);
-      }
-    };
+    a(movieInfo);
   })
   .catch((err) => console.error(err));
+
+let a = (movies) => {
+  let addHTML = '';
+  if (movies.length === 0) {
+    movies = movieInfo;
+  }
+};
 
 // input값 지우기
 function clear() {
@@ -63,3 +64,9 @@ function search() {
   });
   a(filteredMovie);
 }
+
+// const form = document.querySelector('#search-movie');
+// form.addEventListener('input', (event) => {
+//   event.preventDefault();
+//   handleSearch(searchMovie.value);
+// });
