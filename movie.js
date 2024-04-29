@@ -60,10 +60,10 @@ const searchMovieBtn = document.getElementById('search-button');
 
 searchMovieBtn.addEventListener('click', function (event) {
   let searchMovie = document.getElementById('search-movie');
-  const searchValue = searchMovie.value.trim();
+  const searchValue = searchMovie.value.trim().toLowerCase();
   console.log(searchValue);
   let filteredMovie = movieInfo.filter((movie) => {
-    return movie.title.includes(searchValue);
+    return movie.title.toLowerCase().includes(searchValue);
   });
   console.log(filteredMovie);
 
